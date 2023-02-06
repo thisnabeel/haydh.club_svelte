@@ -26,5 +26,4 @@ const storage = (key, initValue) => {
 
   return store;
 };
-
 export default storage;
