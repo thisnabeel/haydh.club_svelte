@@ -5,6 +5,11 @@
     import Companions from "../lib/components/Companions/Companions.svelte";
     import LogIn from "$lib/components/LogIn/LogIn.svelte";
     import PeriodToggle from "$lib/components/Period/Toggle.svelte"
+    import { API_URL } from '$lib/Env';
+
+    onMount(async() => {
+        console.log("API URL", API_URL);
+    })
 
     let period = false;
 
@@ -27,13 +32,12 @@
     <div class="text-center">
         <br>
         <h1>Haydh.Club</h1>
-        <PeriodToggle></PeriodToggle>
     </div>
     <p></p>
     
 
     {#if user_signed_in}
-
+        <PeriodToggle></PeriodToggle>
         {#if period}
             <Companions></Companions>
             <Chatroom chatroomId={1}></Chatroom>
