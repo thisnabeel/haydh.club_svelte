@@ -2,9 +2,10 @@
 <script>
         import {onMount} from "svelte";
     import Messages from "../../Messages/Messages.svelte"
+    import {API_URL} from "$lib/Env"
 
     export let chatroomId;
-    const apiUrl = "http://localhost:3000/"
+    const apiUrl = API_URL;
     let contentInput = "";
     let messages = []
     let period = false;
@@ -21,7 +22,7 @@
 function createChatRoomWebsocketConnection(chatroomId) {
     
     // Creates the new WebSocket connection.
-    let socket = new WebSocket(`ws://localhost:3000/cable`);
+    let socket = new WebSocket(`ws://${apiUrl.split("//")[1]}/cable`);
      // When the connection is first created, this code runs subscribing the client to a specific chatroom stream in the ChatRoomChannel.
     socket.onopen = function(event) {
         console.log('WebSocket is connected.');

@@ -1,6 +1,7 @@
 <script>
     import {onMount} from "svelte";
     import {user} from "$lib/stores/user";
+    import {API_URL} from "$lib/Env"
 
     let user_signed_in;
     let socket;
@@ -13,7 +14,7 @@
     })
 
     let users = [user_signed_in];
-    const apiUrl = "http://localhost:3000/"
+    const apiUrl = API_URL
 
     // $: user_signed_in && closeConnection()
 
@@ -37,7 +38,7 @@
 function createCompanionsWebsocketConnection() {
     
     // Creates the new WebSocket connection.
-    socket = new WebSocket(`ws://localhost:3000/cable`);
+    socket = new WebSocket(`ws://${apiUrl.split("//")[1]}/cable`);
      // When the connection is first created, this code runs subscribing the client to a specific companions stream in the CompanionsChannel.
     socket.onopen = function(event) {
         console.log('COMPANIONS CHANNEL WebSocket is connected.');
